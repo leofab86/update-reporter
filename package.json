@@ -1,0 +1,17 @@
+{
+  "name": "update-reporter",
+  "version": "1.0.0",
+  "description": "Track and diagnose unecessary renders in React. Comes with chainHOC helper.",
+  "main": "chainHOC.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leofab86/update-reporter.git"
+  },
+  "author": "Leo Fabrikant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leofab86/update-reporter/issues"
+  },
+  "homepage": "https://github.com/leofab86/update-reporter#readme"
+}
