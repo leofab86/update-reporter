@@ -5,9 +5,11 @@ npm: https://www.npmjs.com/package/update-reporter
 
 Track and diagnose unecessary renders in React. Also provides chainHOC helper to manage HOCs.
 
+INSTALL:
+npm install update-reporter
 
-INSTALLATION w/ chainHOC helper:
 
+SETUP w/ chainHOC helper:
 In top level component before using any HOCs, import any of your own HOCs you would like to use and pass them, along with a name string, to update-reporter:
 
 ```javascript
@@ -37,7 +39,7 @@ export default chainHOC(COMPONENT, ['updateReporterHOC', 'exampleHOC']);
 ```
 
 
-INSTALLATION w/o chainHOC helper, updateReporter by itself:
+SETUP w/o chainHOC helper, updateReporter by itself:
 
 Export desired components with updateReporter function:
 
