@@ -1,6 +1,6 @@
 {
   "name": "update-reporter",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Track and diagnose unecessary renders in React. Comes with chainHOC helper.",
   "main": "updateReporter.js",
   "scripts": {},
