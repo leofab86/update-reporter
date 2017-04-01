@@ -5,7 +5,7 @@ npm: https://www.npmjs.com/package/update-reporter
 
 Track and diagnose unecessary renders in React. Also provides chainHOC helper to manage HOCs.
 
-DEMO: https://www.youtube.com/edit?o=U&video_id=gMbvwVuDlAM
+DEMO: https://www.youtube.com/watch?v=sqlMM1Elnp0
 
 
 INSTALL:
