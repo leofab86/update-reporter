@@ -1,4 +1,5 @@
 
+//Use HOC box to import HOCs all in once place...
 const HOCbox = {
 	updateReporterHOC: updateReporterHOC
 };
@@ -100,7 +101,6 @@ function updateReporterHOC (WrappedComponent) {
 }
 
 module.exports = {
-	importHOC: importHOC,
 	chainHOC: chainHOC,
 	updateReporterHOC: updateReporterHOC
 }

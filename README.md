@@ -10,32 +10,20 @@ npm install update-reporter
 
 
 SETUP w/ chainHOC helper:
-In top level component before using any HOCs, import any of your own HOCs you would like to use and pass them, along with a name string, to update-reporter:
+
+To apply updateReporter along with your own HOCs, setup component as so:
 
 ```javascript
-import {importHOC} from 'update-reporter';
-
+import { chainHOC, updateReporterHOC } from 'update-reporter';
 import exampleHOC from '../location';
-
-
-importHOC('exampleHOC', exampleHOC);
-```
-
-
-
-To apply updateReporter and your own HOCs, setup component as so:
-
-```javascript
-import { chainHOC } from 'update-reporter';
 
 //define component:
 class COMPONENT extends React.Component {
 	//...
 }
 
-
-//export component through chainHOC helper and provide array of desired HOCs:
-export default chainHOC(COMPONENT, ['updateReporterHOC', 'exampleHOC']);
+//export component through chainHOC helper and provide array of desired HOCs
+export default chainHOC(COMPONENT, [updateReporterHOC, exampleHOC]);
 ```
 
 
