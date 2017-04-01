@@ -13,5 +13,6 @@
   "bugs": {
     "url": "https://github.com/leofab86/update-reporter/issues"
   },
-  "homepage": "https://github.com/leofab86/update-reporter#readme"
+  "homepage": "https://github.com/leofab86/update-reporter#readme",
+  "dependencies": {}
 }

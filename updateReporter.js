@@ -3,17 +3,13 @@ const HOCbox = {
 	updateReporterHOC: updateReporterHOC
 };
 
-export function importHOC (name, HOC) {
-	if (HOCbox[name]) console.error(`HOC Name ${name} already in use, please assign different name`);
-	HOCbox[name] = HOC; 
-}
-
-export function chainHOC (baseComponent, HOCarray) {
+function chainHOC (baseComponent, HOCarray) {
 	let HOCchain = baseComponent;
 	
 	if(HOCarray) {
 
 		HOCchain = HOCarray.reduce((accumulator, currentValue, index, array) => {
+			if(typeof currentValue === 'function') return currentValue(accumulator);
 			if(HOCbox[currentValue] === null) return accumulator;
 			if(!HOCbox[currentValue]) {
 				console.warn(`${currentValue} not found in HOCbox. From ${baseComponent.name || baseComponent.displayName}`)
@@ -28,12 +24,13 @@ export function chainHOC (baseComponent, HOCarray) {
 }
 
 
-export function updateReporterHOC (WrappedComponent) {
+function updateReporterHOC (WrappedComponent) {
 
-	class updateReporterHOC extends WrappedComponent {
-
-		name = WrappedComponent.displayName || WrappedComponent.name;
-		static displayName = WrappedComponent.displayName || WrappedComponent.name;
+	class UpdateReporterHOC extends WrappedComponent {
+		constructor(...args) {
+			super(...args); 
+			this.name = WrappedComponent.displayName || WrappedComponent.name;
+		}
 
 		shouldComponentUpdate(nextProps, nextState) {
 			let superReturn = null;
@@ -97,5 +94,14 @@ export function updateReporterHOC (WrappedComponent) {
 		}
 	}
 
-	return updateReporterHOC
+	UpdateReporterHOC.displayName = WrappedComponent.displayName || WrappedComponent.name;
+
+	return UpdateReporterHOC
 }
+
+module.exports = {
+	importHOC: importHOC,
+	chainHOC: chainHOC,
+	updateReporterHOC: updateReporterHOC
+}
+
