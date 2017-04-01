@@ -1,5 +1,6 @@
 
-//Use HOC box to import HOCs all in once place...
+//Use HOC box to import HOCs all in once place so you dont have to import HOCs on every component.
+//Not implemented yet, need a way for user to import their own HOCs.
 const HOCbox = {
 	updateReporterHOC: updateReporterHOC
 };
