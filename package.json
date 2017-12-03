@@ -1,6 +1,6 @@
 {
   "name": "update-reporter",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Track and diagnose unecessary renders in React.",
   "main": "updateReporter.js",
   "scripts": {},
