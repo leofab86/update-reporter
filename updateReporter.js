@@ -12,9 +12,18 @@ module.exports = function updateReporter (options) {
   }
 
   return function updateReporterIIHOC (WrappedComponent) {
+    let isClass = false
+    try{
+      WrappedComponent()
+    } catch (e) {
+      if(e.toString() === "TypeError: Cannot call a class as a function") {
+        isClass = true
+      } else {
+        console.error(e)
+      }
+    }
 
-    //Check if WrappedComponent is a class component
-    if(WrappedComponent.render) {
+    if(isClass) {
       class UpdateReporterHOC_II extends WrappedComponent {
         constructor (...args) {
           super(...args)
@@ -117,7 +126,7 @@ module.exports = function updateReporter (options) {
 
 
         componentDidMount(){
-          if (options.mount) console.log([`MOUNT ${this.name}`, {PROPS:this.props, STATE:this.state}])
+          if (options.mount) console.log([`MOUNT ${this.name}`, {PROPS:this.props}])
           if (super.componentDidMount) super.componentDidMount()
         }
 
@@ -169,7 +178,7 @@ module.exports = function updateReporter (options) {
         }
 
         render() {
-          if(options.render) console.log([`RNDR ${this.name}`, {STATE:this.state, PROPS:this.props}]);
+          if(options.render) console.log([`RNDR ${this.name}`, {PROPS:this.props}]);
           return React.createElement(WrappedComponent, this.props);
         }
       }
