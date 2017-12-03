@@ -2,45 +2,37 @@ github: https://github.com/leofab86/update-reporter
 
 npm: https://www.npmjs.com/package/update-reporter
 
-Track and diagnose unecessary renders in React. Also provides chainHOC helper to manage HOCs.
+Track and diagnose unecessary renders in React.
 
-Update Reporter is a higher order component that attaches to any component with lifecycle hooks (so it doesn't work with dumb stateless functional components) and uses the shouldComponentUpdate method to do a shallow comparison of props and state (just like PureComponent class.) It also generates a report in the process to give you details about how the comparison went, what each value of previous and incoming prop and state were, and which comparisons failed and caused the component to update.
+Update Reporter is a higher order component that uses the shouldComponentUpdate method to do a shallow comparison of props and state. It also generates a report in the process to give you details about how the comparison went, what each value of previous and incoming prop and state were, and which values were different causing the component to update.
 
 * Update Reporter does not hijack the shouldComponentUpdate method, you can still use your own shouldComponentUpdate inside of your components. Update Reporter will return your component's boolean while still generating a report on whether a shallow comparison would have caused an update.
 
-### DEMO: 
-https://www.youtube.com/watch?v=sqlMM1Elnp0
+* Update Reporter can be used with stateless functional components because it wraps the functional component in a class component and calls shouldComponentUpdate from there.
 
 ### INSTALL:
 npm install update-reporter
 
-### SETUP w/ chainHOC helper:
-
-To apply updateReporter along with your own HOCs, setup component as so:
+### SETUP:
 
 ```javascript
-import { chainHOC, updateReporterHOC } from 'update-reporter';
-import exampleHOC from '../location';
-
+import updateReporter from 'update-reporter';
+  
 //define component:
 class COMPONENT extends React.Component {
-	//...
+	...
 }
-
-//export component through chainHOC helper and provide array of desired HOCs
-export default chainHOC(COMPONENT, [updateReporterHOC, exampleHOC]);
+  
+//export component wrapped in updateReporter and providing an optional optionsObject
+export default updateReporter(optionsObject)(COMPONENT);
 ```
 
-### SETUP w/o chainHOC helper, updateReporter by itself:
-
-Export desired components with updateReporter function:
-
-```javascript
-import { updateReporterHOC } from 'update-reporter';
-
-class COMPONENT extends React.Component {
-	//...
+### OPTIONS DEFAULTS
+```
+optionsObject = {
+    render: false  //Logs whenever a render for the wrapped component occurs
+    mount: false  //Logs whenever the component mounts
+    update: true  //Logs whenever the component updates due to state or props change after initial mount
+    pass: false  //Logs whenever the component would avoid a render by doing a shallow props / state comparrison (or if it were a PureComponent).
 }
-
-export default updateReporterHOC(COMPONENT);
 ```
